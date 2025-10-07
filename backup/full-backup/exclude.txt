@@ -1,0 +1,9 @@
+/home/*
+/mnt/*
+/dev/*
+/proc/*
+/sys/*
+/run/*
+/tmp/*
+/var/tmp
+/var/db/repos/*
