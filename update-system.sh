@@ -23,3 +23,6 @@ emaint moveinst --fix
 emaint world --fix
 
 echo ">>> Update completed!"
+echo "*** Check obsolete:"
+
+eix-test-obsolete -q
