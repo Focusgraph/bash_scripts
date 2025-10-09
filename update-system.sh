@@ -10,4 +10,16 @@ echo ">>> Cleaning packages..."
 
 emerge -qc
 
+echo ">>> Checking health..."
+
+emaint cleanresume --check
+emaint merges --check
+
+echo ">>> Finishing..."
+
+emaint cleanconfmem --fix
+emaint movebin --fix
+emaint moveinst --fix
+emaint world --fix
+
 echo ">>> Update completed!"
