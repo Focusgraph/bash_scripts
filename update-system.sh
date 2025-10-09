@@ -1,7 +1,13 @@
-echo "Pulling content..."
+echo ">>> Pulling content..."
 
-emerge --sync
+emaint sync -a
 
-echo "Searching updates..."
+echo ">>> Looking for updates..."
 
-emerge -avtuND @world
+emerge -avtquND @world
+
+echo ">>> Cleaning packages..."
+
+emerge -qc
+
+echo ">>> Update completed!"
