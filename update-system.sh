@@ -25,4 +25,4 @@ emaint world --fix
 echo ">>> Update completed!"
 echo "*** Check obsolete:"
 
-eix-test-obsolete -q
+eix-test-obsolete
