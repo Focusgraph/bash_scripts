@@ -1,6 +1,6 @@
 echo ">>> Pulling content..."
 
-emaint sync -a
+eix-sync -a
 
 echo ">>> Looking for updates..."
 
