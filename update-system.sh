@@ -13,7 +13,7 @@ eix-sync
 echo ">>> Looking for updates..."
 
 emerge -avtquND @world
-smart-live-rebuild
+smart-live-rebuild -q
 
 echo ">>> Cleaning..."
 
