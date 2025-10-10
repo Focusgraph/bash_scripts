@@ -1,1 +1,1 @@
-rsync --archive --acls --xattrs --delete --progress --verbose /home/genty/Sync/ /home/genty/Archive/Backups/Sync
+rsync --archive --acls --xattrs --delete --progress -h /home/genty/Sync/ /home/genty/Archive/Backups/Sync
