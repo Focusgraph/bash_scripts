@@ -1,3 +1,5 @@
+#eclean-kernel -s mtime -A -n 1
+
 GREEN="\e[32m"
 YELLOW="\e[33m"
 ENDCOLOR="\e[0m"
@@ -11,10 +13,17 @@ eix-sync
 echo ">>> Looking for updates..."
 
 emerge -avtquND @world
+smart-live-rebuild
 
-echo ">>> Cleaning packages..."
+echo ">>> Cleaning..."
 
 emerge -qc
+eclean-dist && eclean-pkg
+eclean-dist -di && eclean-pkg -di
+
+echo ">>> Deduping..."
+
+duperemove -rdqh --hashfile=/home/genty/src.hash /usr/src/
 
 echo ">>> Checking health..."
 
