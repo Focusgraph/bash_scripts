@@ -17,7 +17,7 @@ smart-live-rebuild -q
 
 echo ">>> Cleaning..."
 
-emerge -qc
+emerge -aqc
 eclean-dist && eclean-pkg
 eclean-dist -di && eclean-pkg -di
 
