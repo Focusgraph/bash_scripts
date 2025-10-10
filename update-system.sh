@@ -1,3 +1,7 @@
+GREEN="\e[32m"
+YELLOW="\e[33m"
+ENDCOLOR="\e[0m"
+
 echo ">>> Pulling content..."
 
 eix-sync -a
@@ -22,7 +26,7 @@ emaint movebin --fix
 emaint moveinst --fix
 emaint world --fix
 
-echo ">>> Update completed!"
-echo "*** Check obsolete:"
+echo -e "${GREEN}>>> Update completed!${ENDCOLOR}"
+echo "${YELLOW}*** Check obsolete:${ENDCOLOR}"
 
 eix-test-obsolete -q
