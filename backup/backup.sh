@@ -1,6 +1,6 @@
 cd $(dirname $0)
 
-BEFORE=$(df --total -h)
+BEFORE=$(df --output=source,used,size,pcent,fstype -t ext4 -t vfat -t xfs -H --total)
 
 ./full-backup/full-backup.sh
 ./sync-backup.sh
@@ -12,4 +12,4 @@ $BEFORE
 Now:
 "
 
-df --total -h
+df --output=source,used,size,pcent,fstype -t ext4 -t vfat -t xfs -H --total
