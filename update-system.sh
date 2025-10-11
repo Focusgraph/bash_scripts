@@ -6,6 +6,8 @@ ENDCOLOR="\e[0m"
 
 BEFORE=$(df --output=source,used,size,pcent,fstype -t ext4 -t vfat -t xfs -H --total)
 
+emerge --moo
+
 echo ">>> Pulling content..."
 
 eix-sync
