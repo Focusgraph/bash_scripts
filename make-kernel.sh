@@ -1,6 +1,6 @@
 echo ">>> Compiling kernel..."
 
-make -j16
+make -j$(nproc)
 
 echo ">>> Compiling external modules..."
 
@@ -8,5 +8,5 @@ emerge -q @module-rebuild
 
 echo ">>> Installing kernel..."
 
-make modules_install
-make install
+make -j$(nproc) modules_install
+make -j$(nproc) install
