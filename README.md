@@ -3,14 +3,14 @@ These scripts are tailored to my system and should not be executed blindly, fail
 Take them as a baseline.
 
 ## Gentoo dependencies
-> ### update-system.sh
+### update-system.sh
 - eix
 - smart-live-rebuild
 - gentoolkit
 - duperemove
-  > ### backup.sh
+  ### backup.sh
   - rsync
-> ### *-ccache.sh
+### *-ccache.sh
 - ccache
-> ### emerge-process.sh
+### emerge-process.sh
 - genlop
