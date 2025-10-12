@@ -1,10 +1,17 @@
 #eclean-kernel -s mtime -A -n 1
 
+cd $(dirname $0)
+
 GREEN="\e[32m"
 YELLOW="\e[33m"
 ENDCOLOR="\e[0m"
 
 BEFORE=$(df --output=source,used,size,pcent,fstype -t ext4 -t vfat -t xfs -H --total)
+
+echo ">>> Pre-backup..."
+echo 'TIME="0"' >backup/backup_time
+
+./backup/backup.sh
 
 emerge --moo
 
@@ -27,14 +34,10 @@ emerge -aqc
 eclean-dist && eclean-pkg
 eclean-dist -di && eclean-pkg -di
 
-echo ">>> Deduping..."
-
-duperemove -rdqh --hashfile=/home/genty/src.hash /usr/src/
-
 echo ">>> Checking health..."
 
-emaint cleanresume --check
-emaint merges --check
+CHECK_HEALTH0=$(emaint cleanresume --check)
+CHECK_HEALTH1=$(emaint merges --check)
 
 echo ">>> Finishing..."
 
@@ -43,10 +46,21 @@ emaint movebin --fix
 emaint moveinst --fix
 emaint world --fix
 
+echo ">>> Post-backup..."
+echo 'TIME="1"' >backup/backup_time
+
+./backup/backup.sh
+
+echo ">>> Deduping..."
+
+duperemove -rdqh --hashfile=/home/genty/update.hash /usr/src/ /mnt/backup/ /home/genty/Archive/Backups/agento_backup/
+
 echo -e "${GREEN}>>> Update completed!${ENDCOLOR}"
-echo -e "${YELLOW}*** Check obsolete package entries:${ENDCOLOR}"
+echo -e "${YELLOW}*** Check entries:${ENDCOLOR}"
 
 eix-test-obsolete -q
+$CHECK_HEALTH0
+$CHECK_HEALTH1
 
 echo -e "${YELLOW}>>> Storage overview:${ENDCOLOR}"
 echo "> Before update:
