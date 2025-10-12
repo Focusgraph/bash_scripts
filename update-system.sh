@@ -8,6 +8,10 @@ BEFORE=$(df --output=source,used,size,pcent,fstype -t ext4 -t vfat -t xfs -H --t
 
 emerge --moo
 
+echo ">>> Preparing..."
+
+rm -rf /var/tmp/portage/*
+
 echo ">>> Pulling content..."
 
 eix-sync
