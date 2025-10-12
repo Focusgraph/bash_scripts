@@ -1,15 +1,26 @@
 cd $(dirname $0)
 
-BEFORE=$(df --output=source,used,size,pcent,fstype -t ext4 -t vfat -t xfs -H --total)
+### When running backup.sh by itself backups will be done in "post" folders
+### If update-system.sh it's interrupted backups could happen in "pre" ( Looking to fix in the future)
 
-./full-backup/full-backup.sh
-./sync-backup.sh
+source ./backup_time # "TIME" is stored here, it will select between pre and post destinations
 
-echo "Before:
+DEST_PRE0="/mnt/backup/pre"
+DEST_PRE1="/home/genty/Archive/Backups/agento_backup/pre"
 
-$BEFORE
+DEST_POST0="/mnt/backup/post"
+DEST_POST1="/home/genty/Archive/Backups/agento_backup/post"
 
-Now:
-"
+rsync --archive --acls --xattrs --delete --progress -h /home/genty/Sync/ /home/genty/Archive/Backups/Sync
 
-df --output=source,used,size,pcent,fstype -t ext4 -t vfat -t xfs -H --total
+if [ $TIME == 0 ]; then
+	
+	rsync --archive --acls --xattrs --delete -P -h --exclude-from=exclude.txt --write-batch=/home/genty/rsync_batches/batch-pre / $DEST_PRE0
+	rsync --read-batch=- --archive --acls --xattrs --delete -P -h --exclude-from=exclude.txt $DEST_PRE1 </home/genty/rsync_batches/batch-pre
+	
+elif [ $TIME == 1 ]; then
+	
+	rsync --archive --acls --xattrs --delete --progress -h --exclude-from=exclude.txt --write-batch=/home/genty/rsync_batches/batch-post / $DEST_POST0
+	rsync --read-batch=- --archive --acls --xattrs --delete --progress -h --exclude-from=exclude.txt $DEST_POST1 </home/genty/rsync_batches/batch-post
+	
+fi
