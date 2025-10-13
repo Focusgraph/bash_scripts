@@ -12,5 +12,5 @@ Take them as a baseline.
   - rsync
 ### *-ccache.sh
 - ccache
-### emerge-process.sh
+### emerge-progress.sh
 - genlop
