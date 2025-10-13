@@ -26,6 +26,16 @@ eix-sync
 echo ">>> Looking for updates..."
 
 emerge -avtquND @world
+
+echo "*** Do you wish to continue?"
+
+select yn in "Yes" "No"; do
+	case $yn in
+		Yes ) break;;
+		No ) exit;;
+	esac
+done
+
 smart-live-rebuild -q
 
 echo ">>> Cleaning..."
@@ -36,7 +46,7 @@ eclean-dist -di && eclean-pkg -di
 
 echo ">>> Checking health..."
 
-CHECK_HEALTH0=$(emaint cleanresume --check)
+#CHECK_HEALTH0=$(emaint cleanresume --check)
 CHECK_HEALTH1=$(emaint merges --check)
 
 echo ">>> Finishing..."
@@ -59,7 +69,7 @@ echo -e "${GREEN}>>> Update completed!${ENDCOLOR}"
 echo -e "${YELLOW}*** Check entries:${ENDCOLOR}"
 
 eix-test-obsolete -q
-$CHECK_HEALTH0
+#$CHECK_HEALTH0
 $CHECK_HEALTH1
 
 echo -e "${YELLOW}>>> Storage overview:${ENDCOLOR}"
