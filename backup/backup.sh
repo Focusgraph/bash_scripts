@@ -11,16 +11,16 @@ DEST_PRE1="/home/genty/Archive/Backups/agento_backup/pre"
 DEST_POST0="/mnt/backup/post"
 DEST_POST1="/home/genty/Archive/Backups/agento_backup/post"
 
-rsync --archive --acls --xattrs --delete --progress -h /home/genty/Sync/ /home/genty/Archive/Backups/Sync
+rsync -z --archive --acls --xattrs --delete --progress -h /home/genty/Sync/ /home/genty/Archive/Backups/Sync
 
 if [ $TIME == 0 ]; then
 	
-	rsync --archive --acls --xattrs --delete -P -h --exclude-from=exclude.txt --write-batch=/home/genty/rsync_batches/batch-pre / $DEST_PRE0
-	rsync --read-batch=- --archive --acls --xattrs --delete -P -h --exclude-from=exclude.txt $DEST_PRE1 </home/genty/rsync_batches/batch-pre
+	rsync -z --archive --acls --xattrs --delete -P -h --exclude-from=exclude.txt --write-batch=/home/genty/rsync_batches/batch-pre / $DEST_PRE0
+	rsync --read-batch=- -z --archive --acls --xattrs --delete -P -h --exclude-from=exclude.txt $DEST_PRE1 </home/genty/rsync_batches/batch-pre
 	
 elif [ $TIME == 1 ]; then
 	
-	rsync --archive --acls --xattrs --delete --progress -h --exclude-from=exclude.txt --write-batch=/home/genty/rsync_batches/batch-post / $DEST_POST0
-	rsync --read-batch=- --archive --acls --xattrs --delete --progress -h --exclude-from=exclude.txt $DEST_POST1 </home/genty/rsync_batches/batch-post
+	rsync -z --archive --acls --xattrs --delete --progress -h --exclude-from=exclude.txt --write-batch=/home/genty/rsync_batches/batch-post / $DEST_POST0
+	rsync --read-batch=- -z --archive --acls --xattrs --delete --progress -h --exclude-from=exclude.txt $DEST_POST1 </home/genty/rsync_batches/batch-post
 	
 fi
