@@ -21,7 +21,7 @@ rm -rf /var/tmp/portage/*
 
 echo ">>> Pulling content..."
 
-eix-sync
+emaint sync -a
 
 echo ">>> Looking for updates..."
 
