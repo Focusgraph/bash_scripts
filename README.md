@@ -10,6 +10,7 @@ Take them as a baseline.
 - duperemove
   ### backup.sh
   - rsync
+  - restic
 ### watch-ccache
 - ccache
 ### watch-emerge
