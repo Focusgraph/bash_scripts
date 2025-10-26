@@ -9,9 +9,8 @@ ENDCOLOR="\e[0m"
 BEFORE=$(df --output=source,used,size,pcent,fstype -t ext4 -t vfat -t xfs -H --total)
 
 echo ">>> Pre-backup..."
-echo 'TIME="0"' >backup/backup_time
 
-./backup/backup.sh
+./backupsys
 
 emerge --moo
 
@@ -46,7 +45,6 @@ eclean-dist -di && eclean-pkg -di
 
 echo ">>> Checking health..."
 
-#CHECK_HEALTH0=$(emaint cleanresume --check)
 CHECK_HEALTH1=$(emaint merges --check)
 
 echo ">>> Finishing..."
@@ -57,19 +55,17 @@ emaint moveinst --fix
 emaint world --fix
 
 echo ">>> Post-backup..."
-echo 'TIME="1"' >backup/backup_time
 
-./backup/backup.sh
+./backupsys
 
 echo ">>> Deduping..."
 
-duperemove -rdqh --hashfile=/home/genty/update.hash /usr/src/ /mnt/backup/ /home/genty/Archive/Backups/agento_backup/
+duperemove -rdqh --hashfile=/home/genty/update.hash /usr/src/
 
 echo -e "${GREEN}>>> Update completed!${ENDCOLOR}"
 echo -e "${YELLOW}*** Check entries:${ENDCOLOR}"
 
 eix-test-obsolete -q
-#$CHECK_HEALTH0
 $CHECK_HEALTH1
 
 echo -e "${YELLOW}>>> Storage overview:${ENDCOLOR}"
