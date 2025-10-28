@@ -14,4 +14,4 @@ Take them as a baseline.
 ### watch-ccache
 - ccache
 ### watch-emerge
-- genlop
+- emlop
