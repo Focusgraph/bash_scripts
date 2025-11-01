@@ -1,0 +1,11 @@
+emerge -aqc
+eclean-dist && eclean-pkg
+eclean-dist -di && eclean-pkg -di
+
+echo "> Finishing..."
+
+emaint cleanconfmem --fix
+emaint movebin --fix
+emaint moveinst --fix
+emaint world --fix
+

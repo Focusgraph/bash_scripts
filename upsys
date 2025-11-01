@@ -1,5 +1,3 @@
-#eclean-kernel -s mtime -A -n 1
-
 cd $(dirname $0)
 
 GREEN="\e[32m"
@@ -39,20 +37,7 @@ smart-live-rebuild -q
 
 echo ">>> Cleaning..."
 
-emerge -aqc
-eclean-dist && eclean-pkg
-eclean-dist -di && eclean-pkg -di
-
-echo ">>> Checking health..."
-
-CHECK_HEALTH1=$(emaint merges --check)
-
-echo ">>> Finishing..."
-
-emaint cleanconfmem --fix
-emaint movebin --fix
-emaint moveinst --fix
-emaint world --fix
+./cleansys
 
 echo ">>> Post-backup..."
 
@@ -66,7 +51,7 @@ echo -e "${GREEN}>>> Update completed!${ENDCOLOR}"
 echo -e "${YELLOW}*** Check entries:${ENDCOLOR}"
 
 eix-test-obsolete -q
-$CHECK_HEALTH1
+emaint merges --check
 
 echo -e "${YELLOW}>>> Storage overview:${ENDCOLOR}"
 echo "> Before update:
