@@ -20,9 +20,13 @@ echo ">>> Pulling content..."
 
 emaint sync -a
 
+echo ">>> Generating metadata cache..."
+
+emerge -q --regen
+
 echo ">>> Looking for updates..."
 
-emerge -avtquND @world
+emerge -avuND @world
 
 echo "*** Do you wish to continue?"
 
