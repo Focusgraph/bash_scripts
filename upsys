@@ -16,13 +16,9 @@ echo ">>> Preparing..."
 
 rm -rf /var/tmp/portage/*
 
-echo ">>> Pulling content..."
+echo ">>> Syncing content..."
 
-emaint sync -a
-
-echo ">>> Generating metadata cache..."
-
-emerge -q --regen
+eix-sync
 
 echo ">>> Looking for updates..."
 
