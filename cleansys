@@ -1,6 +1,5 @@
 emerge -aqc
-eclean-dist && eclean-pkg
-eclean-dist -di && eclean-pkg -di
+eclean-dist -d && eclean-pkg -d
 
 echo "> Finishing..."
 
