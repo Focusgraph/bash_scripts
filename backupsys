@@ -2,38 +2,10 @@ cd $(dirname $0)
 
 # Home backup
 echo ">>> Backing up home..."
-restic -p /home/genty/restic_password.txt -r /home/genty/Archive/Backups/home_backup/ -v --exclude-file /home/genty/restic_exclude.txt backup /home/genty/
+restic -p /home/genty/restic_password.txt -r /home/genty/Archive/Backups/home_backup/ --exclude-file /home/genty/restic_exclude.txt backup /home/genty/
 
-# Portage config backup
-echo ">>> Backing up portage config..."
-restic -p /home/genty/restic_password.txt -r /home/genty/Archive/Backups/portage_backup/ -v --exclude gnupg backup /etc/portage/
+echo "########################"
 
-# World list backup
-echo ">>> Backing up world list..."
-rsync --archive --delete -z /var/lib/portage/world /home/genty/Archive/Backups
-
-##############
-### When running backup.sh by itself backups will be done in "post" folders
-### If update-system.sh it's interrupted backups could happen in "pre" ( Looking to fix in the future)
-
-#source ./backup_time # "TIME" is stored here, it will select between pre and post destinations
-
-#DEST_PRE0="/mnt/backup/pre"
-#DEST_PRE1="/home/genty/Archive/Backups/agento_backup/pre"
-
-#DEST_POST0="/mnt/backup/post"
-#DEST_POST1="/home/genty/Archive/Backups/agento_backup/post"
-
-#rsync -z --archive --acls --xattrs --delete --progress -h /home/genty/Sync/ /home/genty/Archive/Backups/Sync
-
-#if [ $TIME == 0 ]; then
-	
-#	rsync -z --archive --acls --xattrs --delete -P -h --exclude-from=exclude.txt --write-batch=/home/genty/rsync_batches/batch-pre / $DEST_PRE0
-#	rsync --read-batch=- -z --archive --acls --xattrs --delete -P -h --exclude-from=exclude.txt $DEST_PRE1 </home/genty/rsync_batches/batch-pre
-	
-#elif [ $TIME == 1 ]; then
-	
-#	rsync -z --archive --acls --xattrs --delete --progress -h --exclude-from=exclude.txt --write-batch=/home/genty/rsync_batches/batch-post / $DEST_POST0
-#	rsync --read-batch=- -z --archive --acls --xattrs --delete --progress -h --exclude-from=exclude.txt $DEST_POST1 </home/genty/rsync_batches/batch-post
-	
-#fi
+# System backup
+echo ">>> Backing up system..."
+restic -p /home/genty/restic_password.txt -r /home/genty/Archive/Backups/sys_backup/ --exclude-file /home/genty/restic_root_exclude.txt backup /
