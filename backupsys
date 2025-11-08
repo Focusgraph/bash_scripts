@@ -4,8 +4,12 @@ cd $(dirname $0)
 echo ">>> Backing up home..."
 restic -p /home/genty/restic_password.txt -r /home/genty/Archive/Backups/home_backup/ --exclude-file /home/genty/restic_exclude.txt backup /home/genty/
 
+restic forget -q -p /home/genty/restic_password.txt --prune --keep-daily 3 --keep-last 5 --repo /home/genty/Archive/Backups/home_backup/
+
 echo "########################"
 
 # System backup
 echo ">>> Backing up system..."
 restic -p /home/genty/restic_password.txt -r /home/genty/Archive/Backups/sys_backup/ --exclude-file /home/genty/restic_root_exclude.txt backup /
+
+restic forget -q -p /home/genty/restic_password.txt --prune --keep-daily 3 --keep-last 5 --repo /home/genty/Archive/Backups/sys_backup/
