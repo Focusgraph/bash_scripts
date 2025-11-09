@@ -1,7 +1,5 @@
 cd $(dirname $0)
 
-EMERGE_STATUS_DIR=/tmp/emerge-status.txt
-
 GREEN="\e[32m"
 YELLOW="\e[33m"
 ENDCOLOR="\e[0m"
@@ -24,23 +22,12 @@ eix-sync
 
 echo ">>> Looking for updates..."
 
-script -q -c "emerge -avuND world" $EMERGE_STATUS_DIR
+emerge -avuND @world
 
-EMERGE_STATUS=$(cat $EMERGE_STATUS_DIR)
-
-if [[ $EMERGE_STATUS == *"Nothing to merge"* ]]
+if [[ $(echo $?) != 0 ]]
 then
 	exit 1
 fi
-
-echo "*** Do you wish to continue?"
-
-# select yn in "Yes" "No"; do
-# 	case $yn in
-# 		Yes ) break;;
-# 		No ) exit;;
-# 	esac
-# done
 
 smart-live-rebuild -q
 
