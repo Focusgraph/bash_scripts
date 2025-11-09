@@ -4,7 +4,7 @@
 - smart-live-rebuild
 - gentoolkit
 - duperemove
-  ### backup.sh
+  ### backupsys
   - rsync
   - restic
 ### watch-ccache
