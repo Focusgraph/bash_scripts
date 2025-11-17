@@ -24,14 +24,11 @@ echo ">>> Looking for updates..."
 
 emerge -avuND @world
 
-echo "*** Do you wish to continue?"
-
-select yn in "Yes" "No"; do
-	case $yn in
-		Yes ) break;;
-		No ) exit;;
-	esac
-done
+if [[ $(echo $?) != 0 ]]
+then
+	echo -e "${YELLOW}*** Update halted!"
+	exit 1
+fi
 
 smart-live-rebuild -q
 
@@ -47,7 +44,7 @@ echo ">>> Deduping..."
 
 duperemove -rdqh --hashfile=/home/genty/update.hash /usr/src/
 
-echo -e "${GREEN}>>> Update completed!${ENDCOLOR}"
+
 echo -e "${YELLOW}*** Check entries:${ENDCOLOR}"
 
 eix-test-obsolete -q
@@ -62,3 +59,5 @@ $BEFORE
 "
 
 df --output=source,used,size,pcent,fstype -t ext4 -t vfat -t xfs -H --total
+
+echo -e "${GREEN}>>> Update completed${ENDCOLOR}"
