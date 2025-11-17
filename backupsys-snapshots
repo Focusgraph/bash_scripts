@@ -1,0 +1,3 @@
+restic snapshots -p /home/genty/restic_password.txt -r /home/genty/Archive/Backups/home_backup/
+
+restic snapshots -p /home/genty/restic_password.txt -r /home/genty/Archive/Backups/sys_backup/
