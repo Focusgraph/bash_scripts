@@ -1,15 +1,24 @@
 cd $(dirname $0)
 
-# Home backup
-echo ">>> Backing up home..."
-restic -p /home/genty/restic_password.txt -r /home/genty/Archive/Backups/home_backup/ --exclude-file /home/genty/restic_exclude.txt backup /home/genty/
+source /home/genty/bash_scripts/config/backupsys.conf
 
-restic forget -q -p /home/genty/restic_password.txt --prune --keep-daily 3 --keep-last 5 --repo /home/genty/Archive/Backups/home_backup/
+RED="\e[31m"
+YELLOW="\e[33m"
+GREEN="\e[32m"
+ENDCOLOR="\e[0m"
 
-echo "########################"
+# Check for mounted drive
+if [[ -d $BACKUP_DIRECTORY ]]
+then
+    echo -e "${GREEN}*** Backup drive mounted ${ENDCOLOR}"
+else
+    echo -e "${RED}!!! Backup drive not mounted ${ENDCOLOR}"
+    echo -e "${YELLOW}!!! Skipping backup ${ENDCOLOR}"
+    exit 2
+fi
 
 # System backup
-echo ">>> Backing up system..."
-restic -p /home/genty/restic_password.txt -r /home/genty/Archive/Backups/sys_backup/ --exclude-file /home/genty/restic_root_exclude.txt backup /
+echo -e "${GREEN}>>> Backing up system...${ENDCOLOR}"
+restic -p $PASSWORD -r $SYS_BACKUP_DIRECTORY --exclude-file $EXCLUDE backup /
 
-restic forget -q -p /home/genty/restic_password.txt --prune --keep-daily 3 --keep-last 5 --repo /home/genty/Archive/Backups/sys_backup/
+restic forget -q -p $PASSWORD --prune --keep-daily 3 --keep-last 5 -r $SYS_BACKUP_DIRECTORY

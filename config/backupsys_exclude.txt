@@ -1,0 +1,14 @@
+/home/genty/Archive
+/home/genty/.cache
+/home/genty/VMDrives
+/home/genty/.local/share/Steam
+/swapfile
+/var/tmp
+/var/spool
+/run
+/dev
+/proc
+/sys
+/mnt
+/lost+found
+/tmp

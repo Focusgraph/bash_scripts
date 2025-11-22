@@ -1,3 +1,5 @@
-restic snapshots -p /home/genty/restic_password.txt -r /home/genty/Archive/Backups/home_backup/
+cd $(dirname $0)
 
-restic snapshots -p /home/genty/restic_password.txt -r /home/genty/Archive/Backups/sys_backup/
+source /home/genty/bash_scripts/config/backupsys.conf
+
+restic snapshots -p $PASSWORD -r $SYS_BACKUP_DIRECTORY
