@@ -12,7 +12,7 @@ if [[ -d $BACKUP_DIRECTORY ]]
 then
     echo -e "${GREEN}*** Backup drive mounted ${ENDCOLOR}"
 else
-    echo -e "${RED}!!! Backup drive not mounted ${ENDCOLOR}"
+    echo -e "${YELLOW}!!! Backup drive not mounted ${ENDCOLOR}"
     echo -e "${YELLOW}!!! Skipping backup ${ENDCOLOR}"
     exit 2
 fi
