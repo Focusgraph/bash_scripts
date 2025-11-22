@@ -1,5 +1,5 @@
 
-## Gentoo dependencies
+## Dependencies
 ### upsys
 - eix
 - smart-live-rebuild
