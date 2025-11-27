@@ -49,6 +49,7 @@ echo -e "${YELLOW}*** Check entries:${ENDCOLOR}"
 
 eix-test-obsolete -q
 emaint merges --check
+glsa-check -t affected
 
 echo -e "${YELLOW}>>> Storage overview:${ENDCOLOR}"
 echo "> Before update:
