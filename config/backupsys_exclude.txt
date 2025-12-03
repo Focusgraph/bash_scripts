@@ -1,6 +1,7 @@
 # Edit to your needs
 /home/genty/Archive
 /home/genty/.cache
+/home/genty/.ccache
 /home/genty/VMDrives
 /home/genty/.local/share/Steam
 
