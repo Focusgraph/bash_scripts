@@ -40,9 +40,9 @@ echo ">>> Post-backup..."
 
 ./backupsys
 
-echo ">>> Deduping..."
+echo ">>> Deduplicating..."
 
-duperemove -rdqh --hashfile=/home/genty/update.hash /usr/src/
+duperemove -rdh --hashfile=/home/genty/update.hash /usr /opt
 
 
 echo -e "${YELLOW}*** Check entries:${ENDCOLOR}"
