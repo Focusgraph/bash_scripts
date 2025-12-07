@@ -14,7 +14,7 @@ emerge --moo
 
 echo ">>> Preparing..."
 
-rm -rf /var/tmp/portage/*
+rm -rvf /var/tmp/portage/* /var/cache/edb/*
 
 echo ">>> Syncing content..."
 
