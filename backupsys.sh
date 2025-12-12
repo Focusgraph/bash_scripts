@@ -1,6 +1,6 @@
 cd $(dirname $0)
 
-source /home/genty/bash_scripts/config/backupsys.conf
+source config/backupsys.conf
 
 RED="\e[31m"
 YELLOW="\e[33m"

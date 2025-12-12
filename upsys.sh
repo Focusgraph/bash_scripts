@@ -42,7 +42,7 @@ echo ">>> Post-backup..."
 
 echo ">>> Deduplicating..."
 
-duperemove -rdh --hashfile=/home/genty/update.hash /usr /opt
+duperemove -rdh --hashfile=config/update.hash /usr /opt
 
 
 echo -e "${YELLOW}*** Check entries:${ENDCOLOR}"
