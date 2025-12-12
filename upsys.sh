@@ -8,7 +8,7 @@ BEFORE=$(df --output=source,used,size,pcent,fstype -t ext4 -t vfat -t xfs -H --t
 
 echo ">>> Pre-backup..."
 
-./backupsys
+./backupsys.sh
 
 emerge --moo
 
@@ -34,11 +34,11 @@ smart-live-rebuild -q
 
 echo ">>> Cleaning..."
 
-./cleansys
+./cleansys.sh
 
 echo ">>> Post-backup..."
 
-./backupsys
+./backupsys.sh
 
 echo ">>> Deduplicating..."
 
