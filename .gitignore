@@ -1,3 +1,7 @@
 unused/
 config/backupsys_password.txt
 config/update.hash
+config/archive.conf
+config/backupsys.conf
+config/backupsys_exclude.txt
+config/upsys.conf
