@@ -1,0 +1,1 @@
+ZSTD_PARAMETERS="--rm -T --exclude-compressed"

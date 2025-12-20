@@ -1,7 +1,8 @@
 # Always use absolute paths or starting with config directory
 
-BACKUP_DIRECTORY=/home/genty/Archive/Backups/sys_backup
+BACKUP_DIRECTORY=
 
+# Remember to configure the following files to your needs
 PASSWORD=config/backupsys_password.txt
 
 EXCLUDE=config/backupsys_exclude.txt

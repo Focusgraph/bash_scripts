@@ -1,0 +1,11 @@
+# General
+/swapfile
+/var/tmp
+/var/spool
+/run
+/dev
+/proc
+/sys
+/mnt
+/lost+found
+/tmp
