@@ -1,6 +1,6 @@
 cd $(dirname $0)
 
-if [[ ! -f ~/bash_scripts/config/backupsys.conf ]]
+if [[ ! -f /home/genty/bash_scripts/config/backupsys.conf ]]
 then
 	echo "Configuration file not found, you can find a sample at 'config' directory"
 	exit 2

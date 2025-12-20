@@ -1,12 +1,13 @@
 cd $(dirname $0)
 
-source config/upsys.conf
 
-if [[ ! -f ~/bash_scripts/config/upsys.conf ]]
+if [[ ! -f /home/genty/bash_scripts/config/upsys.conf ]]
 then
 	echo "Configuration file not found, you can find a sample at 'config' directory"
 	exit 2
 fi
+
+source config/upsys.conf
 
 GREEN="\e[32m"
 YELLOW="\e[33m"
@@ -20,9 +21,9 @@ echo ">>> Pre-backup..."
 
 echo ">>> Preparing..."
 
-emerge --moo
-
 rm -rvf /var/tmp/portage/* /var/cache/edb/*
+
+emerge --moo
 
 echo ">>> Syncing content..."
 

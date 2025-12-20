@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ ! -f ~/bash_scripts/config/archive.conf ]]
+if [[ ! -f /home/genty/bash_scripts/config/archive.conf ]]
 then
 	echo "Configuration file not found, you can find a sample at 'config' directory"
 	exit 2
