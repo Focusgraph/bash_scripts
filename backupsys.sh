@@ -1,5 +1,11 @@
 cd $(dirname $0)
 
+if [[ ! -f ~/bash_scripts/config/backupsys.conf ]]
+then
+	echo "Configuration file not found, you can find a sample at 'config' directory"
+	exit 2
+fi
+
 source config/backupsys.conf
 
 RED="\e[31m"
@@ -19,6 +25,6 @@ fi
 
 # System backup
 echo -e "${GREEN}>>> Backing up system...${ENDCOLOR}"
-restic -p $PASSWORD -r $SYS_BACKUP_DIRECTORY --exclude-file $EXCLUDE backup /
+restic -p $PASSWORD -r $BACKUP_DIRECTORY --exclude-file $EXCLUDE backup /
 
-restic forget -q -p $PASSWORD --prune --keep-daily 3 --keep-last 5 -r $SYS_BACKUP_DIRECTORY
+restic forget -q -p $PASSWORD --prune --keep-daily 3 --keep-last 5 -r $BACKUP_DIRECTORY

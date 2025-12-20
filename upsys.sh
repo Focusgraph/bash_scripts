@@ -1,5 +1,13 @@
 cd $(dirname $0)
 
+source config/upsys.conf
+
+if [[ ! -f ~/bash_scripts/config/upsys.conf ]]
+then
+	echo "Configuration file not found, you can find a sample at 'config' directory"
+	exit 2
+fi
+
 GREEN="\e[32m"
 YELLOW="\e[33m"
 ENDCOLOR="\e[0m"
@@ -10,9 +18,9 @@ echo ">>> Pre-backup..."
 
 ./backupsys.sh
 
-emerge --moo
-
 echo ">>> Preparing..."
+
+emerge --moo
 
 rm -rvf /var/tmp/portage/* /var/cache/edb/*
 
@@ -42,8 +50,7 @@ echo ">>> Post-backup..."
 
 echo ">>> Deduplicating..."
 
-duperemove -rdh --hashfile=config/update.hash /usr /opt
-
+duperemove -rdh --hashfile=config/update.hash $DEDUPE_DIRECTORIES
 
 echo -e "${YELLOW}*** Check entries:${ENDCOLOR}"
 
