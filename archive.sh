@@ -1,15 +1,11 @@
-#!/bin/bash
-
-if [[ ! -f /home/genty/bash_scripts/config/archive.conf ]]
-then
+if [[ ! -f $HOME/bash_scripts/config/archive.conf ]] then
 	echo "Configuration file not found, you can find a sample at 'config' directory"
 	exit 2
 fi
 
 source ~/bash_scripts/config/archive.conf
 
-if [[ -z $1 || -n $2 ]]
-then 
+if [[ -z $1 || -n $2 ]] then 
 	echo "Incorrect number of arguments"
 	exit 1
 elif [[ ! -d $1 ]]
