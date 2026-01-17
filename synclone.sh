@@ -7,10 +7,12 @@ TARGET="$REMOTE:$TARGET_DIR"
 
 if [[ -n $1 ]] then
     SOURCE=$1
-	if [[ -n $2 ]] then
-	    TARGET=$2
-	fi
-	echo "Backing up: $1 --> $TARGET"
+
+    if [[ -n $2 ]] then
+        TARGET=$2
+    fi
+
+    echo "Backing up: $1 --> $TARGET"
 else
     echo "Backing up: $(echo $SOURCE) --> $TARGET"
 fi
